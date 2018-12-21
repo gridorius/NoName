@@ -1,4 +1,6 @@
 <?php
+namespace Routes;
+
 class Routes{
   private static $routes = [];
   public static function addRoute($route){

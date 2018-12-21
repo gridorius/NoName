@@ -1,4 +1,6 @@
 <?php
+namespace Routes;
+
 class Route{
   public $length;
   private $params;
