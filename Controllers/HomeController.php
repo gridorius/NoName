@@ -1,7 +1,7 @@
 <?php
 class Home{
-  public function index(){
-    return 'It is home';
+  public function index($id){
+    return 'It is home and id = '.$id;
   }
 
   public function pizdec(){

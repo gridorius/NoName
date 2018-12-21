@@ -7,9 +7,10 @@ class Routes{
 
   public static function find($url){
     $params = preg_split('/\//', $url);
-    foreach(self::$routes as $route){
-      if($route->checkValid($params)) return $route->handleUrlParams($params);
+    $route = (new Route('{controller}/{action}'))->handleUrlParams(['ErrorController','notFound']);
+    foreach(self::$routes as $r){
+      if($r->checkValid($params)) $route = $r->handleUrlParams($params);
     }
-    return file_get_contents(VIEWS.'/404page.html');
+    return $route;
   }
 }

@@ -8,12 +8,14 @@ $builder->build(__DIR__);
 define('PUBLIC_PATH', __DIR__);
 define('VIEWS', PUBLIC_PATH.'/Views');
 
-// echo "<pre>";
-// echo var_dump($_SERVER);
-// echo "</pre>";
 
-$params = Routes::find(preg_replace('/^\//', '', $_SERVER['REQUEST_URI']));
-$reflection = new ReflectionMethod($params['controller'], $params['action']);
+$route = Routes::find(preg_replace('/^\//', '', $_SERVER['REQUEST_URI']));
+$reflection = new ReflectionMethod($route->controller, $route ->action);
+echo $reflection->invokeArgs(new $route->controller, $route->getParams());
+
+// echo "<pre>";
+// echo var_dump($route);
+// echo "</pre>";
 
 // $controller = new $params['controller'];
 // echo $controller->{$params['action']}();
